@@ -480,11 +480,6 @@ Promise.resolve()
   .then(() => patchMatchingFile('**/app/build.gradle', patchBuildGradle))
   .then(() => patchMatchingFile('ios/*.xcodeproj/project.pbxproj', patchXcodeProj))
   .then(() => patchMatchingFile('**/AppDelegate.m', patchAppDelegate))
-  /* if any of the previous steps did something, this will patch
-     the index.PLATFORM.js files with the necessary initialization code */
-  .then(() => addSentryInit())
-  /* writes sentry.properties files with the API key and other settings */
-  .then(() => addSentryProperties())
   .catch(function(e) {
     console.log('Could not link react-native-sentry: ' + e);
     return Promise.resolve();
